@@ -1,10 +1,13 @@
-import './App.css'
+import Header from './components/Header'
+import Sidebar from './components/Sidebar'
+import './index.css'
 
 function App() {
 
   return (
     <>
-      <h1 className='text-red-500'>HI</h1>
+    <Header/>
+    <Sidebar/>
     </>
   )
 }

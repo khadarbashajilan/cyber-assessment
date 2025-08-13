@@ -1,4 +1,4 @@
-export const mockData ={
+export const mockData = {
   user: {
     id: "STU001",
     name: "Alex Johnson",

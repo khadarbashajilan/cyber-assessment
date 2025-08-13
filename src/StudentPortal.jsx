@@ -1,49 +1,49 @@
-import  { useState } from 'react'
-import { mockData } from '../mockdata';
+import { useState } from 'react';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
-import Dashboardwidgets from './components/Dashboardwidgets';
-import { Assignmentstable } from './components/Assignmentstable';
+import Dashboardwidgets from './pages/DashboardPage';
+import Courses from './components/Coursestable';
+import CGPACalculator from './components/Cgpacalculator';
+import Assignments from './components/Assignmentstable';
 
 const StudentPortal = () => {
-    const [activeMenuItem, setActiveMenuItem] = useState('dashboard');
-  
-  const getBreadcrumb = () => {
-    const breadcrumbs = {
-      dashboard: ['Home'],
-      courses: ['Home', 'Courses'],
-      cgpa: ['Home', 'CGPA Calculator'],
-      assignments: ['Home', 'Assignments']
-    };
-    return breadcrumbs[activeMenuItem] || ['Home'];
-  };
-  const renderMainContent = () => {
-    switch (activeMenuItem) {
-      case 'dashboard':
-        return <Dashboardwidgets stats={mockData.dashboardStats} user={mockData.user} />;
-      case 'courses':
-        return <CoursesTable courses={mockData.courses} />;
-      case 'cgpa':
-        return <CGPACalculator courses={mockData.courses} />;
-      case 'assignments':
-        return <Assignmentstable assignments={mockData.assignments} />;
-      default:
-        return <Dashboardwidgets stats={mockData.dashboardStats} user={mockData.user} />;
-    }
-  };
-  
-  return (
-   <div className="min-h-screen bg-gray-50">
-      <Sidebar activeMenuItem={activeMenuItem} setActiveMenuItem={setActiveMenuItem} />
-      <Header breadcrumb={getBreadcrumb()} user={mockData.user} />
-      
-      <main className="ml-64 p-6">
-        <div className="max-w-7xl mx-auto">
-          {renderMainContent()}
-        </div>
-      </main>
-    </div>
-  )
-}
+  const [activeMenuItem, setActiveMenuItem] = useState('dashboard');
+  const [breadcrumb, setBreadcrumb] = useState(['Dashboard']);
 
-export default StudentPortal
+  const user = {
+    name: 'John Doe',
+    email: 'john.doe@example.com',
+    semester: 'Fall 2023'
+  };
+
+  const stats = {
+    totalCourses: 12,
+    completedCredits: 45,
+    currentGPA: 3.75,
+    pendingAssignments: 5
+  };
+
+  const handleMenuItemClick = (menuItem) => {
+    setActiveMenuItem(menuItem);
+    setBreadcrumb([menuItem.charAt(0).toUpperCase() + menuItem.slice(1)]);
+  };
+
+  return (
+    <div className="flex flex-col md:flex-row min-h-screen bg-gray-100">
+      <Sidebar activeMenuItem={activeMenuItem} setActiveMenuItem={handleMenuItemClick} />
+
+      <div className="flex-1 md:ml-64">
+        <Header breadcrumb={breadcrumb} user={user} />
+
+        <main className="p-6">
+          {activeMenuItem === 'dashboard' && <Dashboardwidgets stats={stats} user={user} />}
+          {activeMenuItem === 'courses' && <Courses />}
+          {activeMenuItem === 'cgpa' && <CGPACalculator />}
+          {activeMenuItem === 'assignments' && <Assignments />}
+        </main>
+      </div>
+    </div>
+  );
+};
+
+export default StudentPortal;

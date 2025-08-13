@@ -1,16 +1,21 @@
-import React, { useState } from 'react'
-import { getGradeColor } from '../utils/util';
+import { useState } from "react";
+import { getGradeColor } from "../utils/util";
 
-export const Assignmentstable = ({assignments}) => {
-     const [statusFilter, setStatusFilter] = useState('all');
+// Component for displaying and filtering assignments
+const AssignmentsPage = ({ assignments }) => {
+  // State for filtering assignments by status
+  const [statusFilter, setStatusFilter] = useState('all');
+  // State for filtering assignments by course
   const [courseFilter, setCourseFilter] = useState('all');
   
+  // Filter assignments based on selected filters
   const filteredAssignments = assignments.filter(assignment => {
     const statusMatch = statusFilter === 'all' || assignment.status === statusFilter;
     const courseMatch = courseFilter === 'all' || assignment.courseId === courseFilter;
     return statusMatch && courseMatch;
   });
   
+  // Get unique course IDs for the filter dropdown
   const uniqueCourses = [...new Set(assignments.map(a => a.courseId))];
   
   return (
@@ -19,6 +24,7 @@ export const Assignmentstable = ({assignments}) => {
         <div className="flex justify-between items-center">
           <h2 className="text-lg font-semibold text-gray-900">Assignments</h2>
           <div className="flex space-x-4">
+            {/* Status filter dropdown */}
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
@@ -28,6 +34,7 @@ export const Assignmentstable = ({assignments}) => {
               <option value="ongoing">Ongoing</option>
               <option value="completed">Completed</option>
             </select>
+            {/* Course filter dropdown */}
             <select
               value={courseFilter}
               onChange={(e) => setCourseFilter(e.target.value)}
@@ -42,6 +49,7 @@ export const Assignmentstable = ({assignments}) => {
         </div>
       </div>
       
+      {/* Assignments table */}
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead className="bg-gray-50">
@@ -64,6 +72,7 @@ export const Assignmentstable = ({assignments}) => {
             </tr>
           </thead>
           <tbody className="bg-white divide-y divide-gray-200">
+            {/* Render each filtered assignment */}
             {filteredAssignments.map((assignment) => (
               <tr key={assignment.id} className="hover:bg-gray-50">
                 <td className="px-6 py-4 whitespace-nowrap">
@@ -105,5 +114,6 @@ export const Assignmentstable = ({assignments}) => {
         </table>
       </div>
     </div>
-  )
-}
+  );
+};
+export default AssignmentsPage;

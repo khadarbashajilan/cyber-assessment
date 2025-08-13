@@ -4,11 +4,9 @@ A comprehensive student portal application built with React and Vite, designed t
 
 ## Features
 
-* User authentication and profile management
 * Course enrollment and tracking
 * GPA calculation and academic progress monitoring
 * Assignment submission and tracking
-* Responsive design for mobile and desktop use
 
 ## Technologies Used
 

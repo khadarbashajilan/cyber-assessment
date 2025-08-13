@@ -1,13 +1,11 @@
-import Header from './components/Header'
-import Sidebar from './components/Sidebar'
 import './index.css'
+import StudentPortal from './StudentPortal'
 
 function App() {
 
   return (
     <>
-    <Header/>
-    <Sidebar/>
+    <StudentPortal/>
     </>
   )
 }

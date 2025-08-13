@@ -1,5 +1,4 @@
 import { BookOpen, Calculator, FileText } from 'lucide-react';
-import React from 'react'
 
 const Dashboardwidgets = ({ stats, user }) => {
     const widgets = [

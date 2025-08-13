@@ -108,6 +108,4 @@ npm run preview
 5. Push your changes to your fork
 6. Create a pull request with a clear description of your changes
 
-## Closing
-
-Thank you for your interest in the Student Portal Application! We hope this comprehensive guide helps you understand and set up the project. If you have any questions or need further assistance, please don't hesitate to reach out. Happy coding!
+Happy coding!

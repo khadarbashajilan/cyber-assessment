@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { mockData } from "./data/mockdata";
-import Layout from "./Layout/Layout";
+import Layout from "./components/Layout/Layout";
 import AssignmentsPage from "./pages/AssignmentsPage";
 import CgpaPage from "./pages/CgpaPage";
 import CoursesPage from "./pages/CoursesPage";

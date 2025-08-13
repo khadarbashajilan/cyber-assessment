@@ -1,5 +1,5 @@
-import Header from "../components/Header";
-import Sidebar from "../components/Sidebar";
+import Header from "../Header";
+import Sidebar from "../Sidebar";
 
 const Layout = ({ currentRoute, onRouteChange, user, children }) => {
   // Main layout component that wraps the entire application
